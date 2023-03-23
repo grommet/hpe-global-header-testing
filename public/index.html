@@ -24,10 +24,19 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>HPE Global Header A11y Testing</title>
+    <script
+      id="hpe-global-header"
+      type="text/javascript"
+      async=""
+      src="http://127.0.0.1:8080/hpe-global-header.js"
+    ></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div>
+      <hpe-global-header kind="a11y-testing" />
+    </div>
     <div id="root"></div>
     <!--
       This HTML file is a template.

@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Grommet, Card, Grid, Page, PageContent, PageHeader } from "grommet";
+import { hpe } from "grommet-theme-hpe";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={hpe} full="min">
+      <Page>
+        <PageContent gap="medium">
+          <Content />
+        </PageContent>
+      </Page>
+    </Grommet>
   );
 }
+
+const content = {
+  "/": {
+    title: "Home",
+  },
+  "/services": {
+    title: "Services",
+    subtitle: "Discover and manage services.",
+  },
+  "/devices": {
+    title: "Devices",
+    subtitle: "Onboard and manage all devices in your inventory.",
+  },
+};
+
+const Content = () => {
+  const [activeContent, setActiveContent] = useState(
+    content[window.location.pathname]
+  );
+
+  useEffect(() => {
+    const updateContent = () => {
+      setActiveContent(content[window.location.pathname]);
+    };
+    window.addEventListener("routeChange", updateContent);
+    updateContent();
+    return () => window.removeEventListener("routeChange", updateContent);
+  }, []);
+
+  return (
+    <>
+      <PageHeader
+        title={activeContent.title}
+        subtitle={activeContent.subtitle}
+      />
+      <Grid columns="small" rows="small" gap="medium">
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
+          <Card key={index} />
+        ))}
+      </Grid>
+    </>
+  );
+};
 
 export default App;
