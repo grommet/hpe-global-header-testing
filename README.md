@@ -1,4 +1,4 @@
-# HPE Header Footer Service North Star Testing
+# HPE Header Footer Service Testing
 
 This application is intended to test the HFS North Star designs.
 
